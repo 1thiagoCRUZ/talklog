@@ -5,6 +5,8 @@ import { UserModule } from './modules/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { dataSourceOptions } from './database/config/db';
+import { NoteModule } from './modules/note.module';
+import { TaskModule } from './modules/task.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { dataSourceOptions } from './database/config/db';
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
+    NoteModule,
+    TaskModule,
     AuthModule,
     JwtModule
   ],

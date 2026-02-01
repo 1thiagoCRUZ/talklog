@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./jwt";
 import { AuthController } from "./auth.controller";
+import 'dotenv/config';
 
 @Module({
     imports: [
@@ -15,7 +16,7 @@ import { AuthController } from "./auth.controller";
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => ({
-                secret: configService.get<string>('JWT_SECRET'),
+                secret: process.env.JWT_SECRET,
                 signOptions: {
                     expiresIn: (configService.get<string>('JWT_EXPIRES_IN') || '1d') as any,
                 },
